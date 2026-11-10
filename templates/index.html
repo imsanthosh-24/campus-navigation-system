@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Navigation System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header><div class="brand"><div class="mark">CN</div><div><h1>Campus Navigation</h1><p>Smart route finder & campus network explorer</p></div></div>
+<nav><a href="#navigate">Navigation</a><a href="#algorithms">Algorithms</a><a href="#network">Network</a></nav></header>
+<main>
+<section class="hero"><div class="eyebrow">ADSA MINI PROJECT</div><h2>Find your way<br><span>around campus.</span></h2><p>Explore campus locations and calculate routes using graph algorithms.</p><a class="primary" href="#navigate">Find a Route <b>→</b></a></section>
+<section class="stats"><div><strong>08</strong><span>Campus locations</span></div><div><strong>06</strong><span>Graph algorithms</span></div><div><strong>01</strong><span>Connected network</span></div></section>
+<section id="navigate" class="panel"><div class="section-head"><div><div class="eyebrow">ROUTE PLANNER</div><h2>Plan your journey</h2></div><span class="live">● SYSTEM READY</span></div>
+<div class="form-grid"><label>Starting point<select id="source">{% for p in locations %}<option>{{p}}</option>{% endfor %}</select></label><label>Destination<select id="destination">{% for p in locations %}<option {% if p == 'Library' %}selected{% endif %}>{{p}}</option>{% endfor %}</select></label><label class="wide">Algorithm<select id="algorithm"><option value="dijkstra">Dijkstra — shortest weighted route</option><option value="bfs">BFS — breadth-first traversal route</option><option value="dfs">DFS — depth-first traversal route</option><option value="floyd">Floyd–Warshall — all-pairs shortest path</option><option value="prim">Prim — minimum spanning tree</option><option value="kruskal">Kruskal — minimum spanning tree</option></select></label></div>
+<button id="find" class="primary">Calculate Route <b>→</b></button><div id="result" class="result hidden" aria-live="polite"></div></section>
+<section id="algorithms"><div class="eyebrow">GRAPH ALGORITHMS</div><h2 class="section-title">Algorithms in this project</h2><div class="cards">
+<article><span>01</span><h3>Dijkstra</h3><p>Finds a minimum-distance path in a weighted graph.</p></article><article><span>02</span><h3>BFS</h3><p>Explores the graph level by level using a queue.</p></article><article><span>03</span><h3>DFS</h3><p>Explores as far as possible before backtracking.</p></article><article><span>04</span><h3>Floyd–Warshall</h3><p>Computes shortest paths between every pair of vertices.</p></article><article><span>05</span><h3>Prim</h3><p>Builds a minimum spanning tree by growing one tree.</p></article><article><span>06</span><h3>Kruskal</h3><p>Builds a minimum spanning tree by selecting light edges.</p></article></div></section>
+<section id="network" class="panel network"><div class="eyebrow">CAMPUS GRAPH</div><h2>Locations & connections</h2><p>Each connection is an undirected edge. Distances are sample values in metres and can be edited in <code>algorithms.py</code>.</p><div id="edges" class="edge-list">Loading campus connections…</div></section>
+</main><footer>Campus Navigation System · ADSA Mini Project</footer>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
